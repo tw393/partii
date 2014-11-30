@@ -4,11 +4,11 @@ line_length = 40;
 arrow_annotation_switch = 'yes'; %choose whether to label the catch
 switch arrow_annotation_switch;
     case 'yes'
-        catch_frame = 300;
+        catch_frame = 1+ killer_catchframe - Killer_1stmovingframe;
         xa1 = catch_frame + line_length;
         xa2 = catch_frame;
-        ya1 = SpEeD_killer(xa2) + line_length + 30;
-        ya2 = ya1 - line_length - 30;
+        ya1 = SpEeD_killer(xa2) + line_length + 10;
+        ya2 = ya1 - line_length - 10;
         anno_line_width = 1.5;
         anno_head_style = 'vback3';
 end
@@ -25,6 +25,7 @@ xlabel({'Frame number'}, 'FontSize', 12, 'FontWeight', 'bold')
 ylabel({'Speed of object', '(mm/s)'}, 'FontSize', 12, 'FontWeight', 'bold')
 title('Graph of speeds of predator and prey', 'FontSize', 12, 'FontWeight', 'bold')
 legend('Speed of prey', 'Speed of predator', 'location', 'southeast')
+set(gca, 'TickDir', 'out')
 ax = gca;
 [xaf, yaf] = ds2nfu([xa1, xa2], [ya1, ya2]);
 % ticks = get(ax, 'XTick');
@@ -43,7 +44,7 @@ switch arrow_annotation_switch;
     case 'yes'
         a1 = annotation('arrow', xaf, yaf);
         str1 = 'catch';
-        text(xa1 + 10, ya1, str1)
+        text(xa1 + 5, ya1 + 10, str1, 'FontSize', 11)
         set(a1, 'LineWidth', anno_line_width, 'HeadStyle', anno_head_style);
 end
 
