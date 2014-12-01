@@ -1,5 +1,5 @@
 %% plots acceleration of droso and predator against frame number
-run_as = 'simple'; %simple runs in one folder, subfolders
+run_as = 'subfolders'; %simple runs in one folder, subfolders
 %takes more options and plots for all data subfolders
 
 line_width = 2;
