@@ -17,3 +17,23 @@ legend('Acceleration of prey', 'Acceleration of predator', 'location', 'southeas
 set(gca, 'TickDir', 'out')
 
 set(gcf, 'Visible', 'on');
+
+%%
+str2 = genpath(pwd);
+str2 = strrep(str2, '\', '-');
+q = strfind(str2, 'Fly');
+w = strfind(str2, '_calib');
+substr1 = str2(q:q + 4);
+if strcmp(str2(w - 1), 'w') == 1;
+    substr2 = str2(w - 3:w + 5);
+elseif strcmp(str2(w - 1), 'd') == 1;
+    substr2 = str2(w - 3:w + 5);
+else
+    substr2 = str2(w - 1:w + 5);
+end
+
+saveas(gcf, ['F:\analysis\' pngstr1], 'png');
+saveas(gcf, ['F:\analysis\' figstr1], 'fig');
+%% save figures in current folder
+saveas(gcf, figstr1, 'fig');
+saveas(gcf, pngstr1, 'png');
