@@ -33,9 +33,6 @@ end
 
 pngstr1 = sprintf('%s_%s_acceleration.png', substr1, substr2);
 figstr1 = sprintf('%s_%s_acceleration.fig', substr1, substr2);
-
-saveas(gcf, ['F:\analysis\' pngstr1], 'png');
-saveas(gcf, ['F:\analysis\' figstr1], 'fig');
 %% save figures in current folder
 saveas(gcf, figstr1, 'fig');
 saveas(gcf, pngstr1, 'png');
