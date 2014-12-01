@@ -1,33 +1,9 @@
 %% plots speeds of droso and predator against frame number
-run_as = 'subfolders'; %simple runs in one folder, subfolders
-%takes more options and plots for all data subfolders
-
 line_width = 2;
 load(uigetfile('distance_analysis.mat'));
 if exist('SpEeD_droso') == 0;
+    fprinf(1, 'Incorrect variables found.\n');
     return
-end
-%%
-switch run_as
-    case 'subfolders'
-        response = responsegui('what to plot', 'All subfolders', 'This folder only');
-        if strcmp(response, 'This folder only') == 1;
-            list = struct('name', pwd());
-        else
-            if strcmp(run_as, 'simple') == 1;
-                answer = {pwd, ''};
-            else
-                query = {'root folder', 'string that subfolders end in'};
-                answer = inputdlg(query);
-                %first argument is root folder
-                % of fly data; second argument is the characters used to
-                % identify each data-containing subfolder
-            end
-        end
-        number_of_characters = length(answer{2,1});
-        list = sfold(answer{1,1}, answer{2,1}, number_of_characters);
-    case 'simple'
-        list.name = pwd();
 end
 %%
 figure('MenuBar', 'none');
@@ -40,7 +16,6 @@ ylabel({'Speed of object', '(mm/s)'}, 'FontSize', 12, 'FontWeight', 'bold')
 title('Graph of speeds of predator and prey', 'FontSize', 12, 'FontWeight', 'bold')
 legend('Speed of prey', 'Speed of predator', 'location', 'southeast')
 set(gca, 'TickDir', 'out')
-
 set(gcf, 'Visible', 'on');
 %% get details for figure name and save figures in collective folder
 str2 = genpath(pwd);
