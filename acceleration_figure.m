@@ -1,11 +1,10 @@
-%% plots speeds of droso and predator against frame number
-% assumes that all fly data is kept in individual calibration
-run_as = 'subfolders'; %simple runs in one folder, subfolders
+%% plots acceleration of droso and predator against frame number
+run_as = 'simple'; %simple runs in one folder, subfolders
 %takes more options and plots for all data subfolders
 
 line_width = 2;
 load(uigetfile('distance_analysis.mat'));
-if exist('SpEeD_droso') == 0;
+if exist('Acceleration_plain_droso') == 0;
     return
 end
 %%
@@ -30,7 +29,7 @@ switch run_as
     case 'simple'
         list.name = pwd();
 end
-%% loads variables to plot
+%%
 for k = 1:length(list);
     
     cd(list(k).name);
