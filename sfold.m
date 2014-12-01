@@ -1,4 +1,4 @@
-function listOfFolderNames = sfold(start_path, end_string)
+function listOfFolderNames = sfold(start_path, end_string, number_of_characters)
 
 listOfFolderNames = {};
 allSubFolders = genpath(start_path);
@@ -12,7 +12,7 @@ if isempty(folderToAdd),
 end
 flipList = fliplr(folderToAdd);
 try
-    testChars = flipList(1:5);
+    testChars = flipList(1:number_of_characters);
 catch
     continue
 end

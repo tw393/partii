@@ -2,10 +2,18 @@
 % assumes that all fly data is kept in individual calibration
 % folders named \x_calib
 line_width = 2;
-response = responsegui();
-list = sfold('F:\', 'calib');%first argument is root folder 
+response = responsegui('what to plot', 'All subfolders', 'This folder only');
+if strcmp(response, 'This folder only') == 1;
+    list = struct('name', pwd());
+else
+    query = {'root folder', 'string that subfolders end in'};
+    answer = inputdlg(query);
+    number_of_characters = length(answer{2,1});
+    list = sfold(answer{1,1}, answer{2,1}, number_of_characters);%first argument is root folder 
 % of fly data; second argument is the characters used to 
 % identify each data-containing subfolder
+end
+
 %% loads variables to plot
 for k = 1:length(list);
     
@@ -30,7 +38,7 @@ for k = 1:length(list);
 
         
 %% create figure
-figure();
+figure('MenuBar','none');
 hold on;
 set(gcf, 'Visible', 'off');
 p1 = plot(SpEeD_droso, 'LineWidth', line_width, 'Color', 'r');

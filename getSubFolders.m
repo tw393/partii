@@ -1,7 +1,6 @@
-function listOfFolderNames = getSubFolders()
+function listOfFolderNames = getSubFolders(start_path)
 
 listOfFolderNames = {};
-start_path = 'F:\';
 allSubFolders = genpath(start_path);
 remain = allSubFolders;
 complete = [''];
