@@ -1,11 +1,11 @@
 list_of_variable_files = dir('*_analysis.mat');
 droso_array = zeros(27,6);
-killer_array = zeros(27,6);
+holco_array = zeros(27,6);
 for k = 1:length(list_of_variable_files);
     load(list_of_variable_files(k).name);
     droso_vars(k) = droso;
-    killer_vars(k) = killer;
-    clear droso killer
+    holco_vars(k) = holco;
+    clear droso holco
 end
 
 for k = 1:length(list_of_variable_files);
@@ -16,18 +16,18 @@ for k = 1:length(list_of_variable_files);
     droso_array(k,5) = droso_vars(k).variance_acceleration;
     droso_array(k,6) = droso_vars(k).max_acceleration;
 
-    killer_array(k,1) = killer_vars(k).mean_speed;
-    killer_array(k,2) = killer_vars(k).variance_speed;
-    killer_array(k,3) = killer_vars(k).max_speed;
-    killer_array(k,4) = killer_vars(k).mean_acceleration;
-    killer_array(k,5) = killer_vars(k).variance_acceleration;
-    killer_array(k,6) = killer_vars(k).max_acceleration;
+    holco_array(k,1) = holco_vars(k).mean_speed;
+    holco_array(k,2) = holco_vars(k).variance_speed;
+    holco_array(k,3) = holco_vars(k).max_speed;
+    holco_array(k,4) = holco_vars(k).mean_acceleration;
+    holco_array(k,5) = holco_vars(k).variance_acceleration;
+    holco_array(k,6) = holco_vars(k).max_acceleration;
 end
 
 mean_speed_all_droso = mean(droso_array(:,1));
 mean_acceleration_all_droso = mean(droso_array(:,4));
-mean_speed_all_killer = mean(killer_array(:,1));
-mean_acceleration_all_killer = mean(killer_array(:,4));
+mean_speed_all_holco = mean(holco_array(:,1));
+mean_acceleration_all_holco = mean(holco_array(:,4));
 %% explanation of variable arrays
 % array(:,1) = mean_speed
 % array(:,2) = variance_speed
