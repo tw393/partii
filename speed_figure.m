@@ -100,7 +100,7 @@ max_speed_killer = max(SpEeD_killer);
 %% saves the figures using format FlyXX_x_calib_speed
 try save('analysis.mat', 'droso', 'killer');
 catch message2
-    fprintf(1, '%s', message.message);
+    fprintf(1, '%s', message2.message);
     clearvars('-except', 'list', 'line_width', 'k');
 end
 end
