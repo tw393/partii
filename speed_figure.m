@@ -31,6 +31,9 @@ else
     substr2 = str2(w - 1:w + 5);
 end
 
+pngstr1 = sprintf('%s_%s_speed.png', substr1, substr2);
+figstr1 = sprintf('%s_%s_speed.fig', substr1, substr2);
+
 saveas(gcf, ['F:\analysis\' pngstr1], 'png');
 saveas(gcf, ['F:\analysis\' figstr1], 'fig');
 %% save figures in current folder
