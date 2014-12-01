@@ -40,9 +40,17 @@ saveas(gcf, ['F:\analysis\' figstr1], 'fig');
 saveas(gcf, figstr1, 'fig');
 saveas(gcf, pngstr1, 'png');
 %% save some variables 
-mean_speed_droso = mean(SpEeD_droso);
-mean_speed_killer = mean(SpEeD_killer);
-variance_speed_droso = var(SpEeD_droso);
-variance_speed_killer = var(SpEeD_killer);
-max_speed_droso = max(SpEeD_droso);
-max_speed_killer = max(SpEeD_killer);
+droso.mean_speed = mean(SpEeD_droso);
+killer.mean_speed = mean(SpEeD_killer);
+droso.variance_speed = var(SpEeD_droso);
+killer.variance_speed = var(SpEeD_killer);
+droso.max_speed = max(SpEeD_droso);
+killer.max_speed = max(SpEeD_killer);
+droso.mean_acceleration = mean(Acceleration_plain_droso);
+killer.mean_acceleration = mean(Acceleration_plain_killer);
+droso.variance_acceleration = var(Acceleration_plain_droso);
+killer.variance_acceleration = var(Acceleration_plain_killer);
+droso.max_acceleration = max(Acceleration_plain_droso);
+killer.max_acceleration = max(Acceleration_plain_killer);
+
+save('analysis.mat', 'droso', 'killer');
