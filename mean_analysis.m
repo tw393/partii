@@ -28,3 +28,5 @@ mean_speed_droso = mean(SpEeD_droso);
 mean_speed_killer = mean(SpEeD_killer);
 variance_speed_droso = var(SpEeD_droso);
 variance_speed_killer = var(SpEeD_killer);
+max_speed_droso = max(SpEeD_droso);
+max_speed_killer = max(SpEeD_killer);
