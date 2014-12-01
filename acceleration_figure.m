@@ -1,4 +1,7 @@
 %% plots acceleration of droso and predator against frame number
+program = 'simple'; %simple runs in one folder, complex
+%takes more options and plots for all data subfolders
+
 line_width = 2;
 load(uigetfile('distance_analysis.mat'));
 if exist('SpEeD_droso') == 0;
