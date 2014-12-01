@@ -4,10 +4,6 @@ run_as = 'subfolders'; %simple runs in one folder, subfolders
 %takes more options and plots for all data subfolders
 
 line_width = 2;
-load(uigetfile('distance_analysis.mat'));
-if exist('SpEeD_droso') == 0;
-    return
-end
 %%
 switch run_as
     case 'subfolders'
@@ -15,26 +11,24 @@ switch run_as
         if strcmp(response, 'This folder only') == 1;
             list = struct('name', pwd());
         else
-            if strcmp(run_as, 'simple') == 1;
-                answer = {pwd, ''};
-            else
                 query = {'root folder', 'string that subfolders end in'};
                 answer = inputdlg(query);
                 %first argument is root folder
                 % of fly data; second argument is the characters used to
                 % identify each data-containing subfolder
-            end
+            
         end
         number_of_characters = length(answer{2,1});
         list = sfold(answer{1,1}, answer{2,1}, number_of_characters);
     case 'simple'
         list.name = pwd();
+        answer = {pwd, 'calib'};
 end
 %% loads variables to plot
 for k = 1:length(list);
     
     cd(list(k).name);
-    clearvars('-except', 'list', 'line_width', 'k', 'file_to_load');
+    clearvars('-except', 'list', 'line_width', 'k', 'file_to_load', 'answer');
 
     file_to_load = which('distance_analysis.mat');
     try
@@ -47,10 +41,10 @@ for k = 1:length(list);
         continue
     end
     str1 = list(1).name(1:end);
-    exist_list = dir('*speed_holco_versus_droso.*');
-    if isempty(exist_list) == 0;
-        continue
-    end
+%     exist_list = dir('*speed.*');
+%     if isempty(exist_list) == 0;
+%         continue
+%     end
 
         
 %% create figure
@@ -74,33 +68,42 @@ set(gcf, 'Visible', 'on');
 str2 = list(k).name;
 str2 = strrep(str2, '\', '-');
 q = strfind(str2, 'Fly');
-w = strfind(str2, '_calib');
+w = strfind(str2, answer{2});
 substr1 = str2(q:q + 4);
-if strcmp(str2(w - 1), 'w') == 1;
-    substr2 = str2(w - 3:w + 5);
-elseif strcmp(str2(w - 1), 'd') == 1;
-    substr2 = str2(w - 3:w + 5);
+if strcmp(str2(w - 2), 'w') == 1;
+    substr2 = str2(w - 4:w + 4);
+elseif strcmp(str2(w - 2), 'd') == 1;
+    substr2 = str2(w - 4:w + 4);
 else
-    substr2 = str2(w - 1:w + 5);
+    substr2 = str2(w - 2:w + 4);
 end
 
 pngstr1 = sprintf('%s_%s_speed.png', substr1, substr2);
 figstr1 = sprintf('%s_%s_speed.fig', substr1, substr2);
 saveas(gcf, ['F:\analysis\' pngstr1], 'png');
 saveas(gcf, ['F:\analysis\' figstr1], 'fig');
+saveas(gcf, pngstr1, 'png');
+saveas(gcf, figstr1, 'fig');
 clf
 close(gcf);
 %% save some variables about the speeds
-mean_speed_droso = mean(SpEeD_droso);
-mean_speed_killer = mean(SpEeD_killer);
-variance_speed_droso = var(SpEeD_droso);
-variance_speed_killer = var(SpEeD_killer);
-max_speed_droso = max(SpEeD_droso);
-max_speed_killer = max(SpEeD_killer);
-%% saves the figures using format FlyXX_x_calib_speed
-try save('analysis.mat', 'droso', 'killer');
+droso.mean_speed = mean(SpEeD_droso);
+killer.mean_speed = mean(SpEeD_killer);
+droso.variance_speed = var(SpEeD_droso);
+killer.variance_speed = var(SpEeD_killer);
+droso.max_speed = max(SpEeD_droso);
+killer.max_speed = max(SpEeD_killer);
+droso.mean_acceleration = mean(Acceleration_plain_droso);
+killer.mean_acceleration = mean(Acceleration_plain_killer);
+droso.variance_acceleration = var(Acceleration_plain_droso);
+killer.variance_acceleration = var(Acceleration_plain_killer);
+droso.max_acceleration = max(Acceleration_plain_droso);
+killer.max_acceleration = max(Acceleration_plain_killer);
+%%
+save_name = sprintf('/%s_analysis.mat', substr1);
+try save(['F:\analysis\' save_name]', 'droso', 'killer');
 catch message2
     fprintf(1, '%s', message2.message);
-    clearvars('-except', 'list', 'line_width', 'k');
+    clearvars('-except', 'list', 'line_width', 'k', 'file_to_load', 'answer');
 end
 end
