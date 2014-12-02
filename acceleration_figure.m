@@ -1,24 +1,30 @@
 %% plots accelerations of droso and predator against frame number
-line_width = 2;
+%% figure appearance settings
+line_width = 3;
+font_size = 28;
+bold_tog = 'normal';
+font_name = 'default';
+%% load data
 load(uigetfile('distance_analysis.mat'));
 if exist('Acceleration_plain_droso') == 0;
     fprinf(1, 'Incorrect variables found.\n');
     return
 end
-%%
-figure('MenuBar', 'none');
+%% create figure
+figure('MenuBar', 'none', 'Position', [360 215 1200 650]);
 hold on;
 set(gcf, 'Visible', 'off');
 p1 = plot(Acceleration_plain_droso, 'LineWidth', line_width, 'Color', 'r');
 p2 = plot(Acceleration_plain_killer, 'LineWidth', line_width, 'Color', 'b');
-xlabel({'Frame number'}, 'FontSize', 12, 'FontWeight', 'bold')
-ylabel({'Acceleration of object', '(mm/s^2)'}, 'FontSize', 12, 'FontWeight', 'bold')
-title('Graph of accelerations of predator and prey', 'FontSize', 12, 'FontWeight', 'bold')
-legend('Acceleration of prey', 'Acceleration of predator', 'location', 'southeast')
+xlabel({'Frame number (1 frame = 1 ms)'}, 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
+ylabel({'Acceleration of object', '(mm/s^2)'}, 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
+title('Accelerations of predator and prey', 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
+l = legend('Acceleration of prey', 'Acceleration of predator', 'location', 'southeast');
+set(l, 'FontName', font_name, 'FontSize', font_size - 16);
 set(gca, 'TickDir', 'out')
 set(gcf, 'Visible', 'on');
 %% get details for figure name and save figures in collective folder
-str2 = genpath(pwd);
+str2 = pwd();
 str2 = strrep(str2, '\', '-');
 q = strfind(str2, 'Fly');
 w = strfind(str2, '_calib');
