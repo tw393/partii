@@ -1,13 +1,20 @@
+%% constructs a matrix containing movement data of droso and holco
+% from analysis.mat files contained in F:\analyis\
+%% loads the data from \analysis\
+current_folder = pwd();
+cd('F:\analysis\')
 list_of_variable_files = dir('*_analysis.mat');
 droso_array = zeros(27,6);
 holco_array = zeros(27,6);
+%% creates struct containing all the data
 for k = 1:length(list_of_variable_files);
     load(list_of_variable_files(k).name);
     droso_vars(k) = droso;
-    holco_vars(k) = holco;
-    clear droso holco
+    holco_vars(k) = killer;
+    clear droso killer
 end
-
+%% puts data from struct into a [K x 6] matrix where K is the
+% number of different Fly data being analysed
 for k = 1:length(list_of_variable_files);
     droso_array(k,1) = droso_vars(k).mean_speed;
     droso_array(k,2) = droso_vars(k).variance_speed;
@@ -28,6 +35,9 @@ mean_speed_all_droso = mean(droso_array(:,1));
 mean_acceleration_all_droso = mean(droso_array(:,4));
 mean_speed_all_holco = mean(holco_array(:,1));
 mean_acceleration_all_holco = mean(holco_array(:,4));
+
+cd(current_folder);
+clear list_of_variable_files k current+folder droso_vars holco_vars
 %% explanation of variable arrays
 % array(:,1) = mean_speed
 % array(:,2) = variance_speed
