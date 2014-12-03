@@ -1,8 +1,10 @@
 %% add standard error calculations to the distance_analysis
 %files contained in F:/analysis/analysis_data
-list = dir('*_distance_analysis.mat');
-M = zeros(35,718); %718 is the length of the longest video in frames
-killer_mean_std_per_frame = zeros(4,718); % this matrix will contain the 
+% list = dir('*_distance_analysis.mat');
+list(1).name = 'Fly21_new_calib_distance_analysis.mat';
+list(2).name = 'Fly22_new_calib_distance_analysis.mat';
+% M = zeros(35,718); %718 is the length of the longest video in frames
+% killer_mean_std_per_frame = zeros(4,718); % this matrix will contain the 
 % data we pull from the individual *distance_analysis.mat files
 %% collate data about speed into one matrix
 for k = 1:length(list);
