@@ -1,5 +1,5 @@
 %% plots speeds of droso and predator against frame number
-%% figure appearance settings
+% figure appearance settings
 line_width = 3;
 font_size = 20;
 bold_tog = 'normal';
