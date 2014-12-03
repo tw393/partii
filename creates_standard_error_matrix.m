@@ -74,5 +74,5 @@ for k = 1:length(Mah);
     aparams_perframe_holco(3,k) = astd_column / sqrt(asum_column);
     aparams_perframe_holco(4,k) = asum_column;
 end
-clearvars('-except', 'logMa', 'logMs', 'Ma', 'Ms', 'sparams_perframe_droso', 'aparams_perframe_droso', 'sparams_perframe_holco', 'aparams_perframe_holco');
-save('standard_error_matrices.mat', 'sparams_perframe_droso', 'aparams_perframe_droso', 'sparams_perframe_holco', 'aparams_perframe_holco');
+clearvars('-except', 'logMa', 'logMs', 'Mad', 'Mah', 'Msd', 'Msh', 'sparams_perframe_droso', 'aparams_perframe_droso', 'sparams_perframe_holco', 'aparams_perframe_holco');
+save('standard_error_matrices.mat','Msd', 'Mad', 'Msh', 'Mah', 'sparams_perframe_droso', 'aparams_perframe_droso', 'sparams_perframe_holco', 'aparams_perframe_holco');
