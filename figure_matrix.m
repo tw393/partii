@@ -8,7 +8,7 @@ killer_mean_std_per_frame = zeros(4,718); % this matrix will contain the
 for k = 1:length(list);
     load(list(k).name)
     try
-    M(k,1:length(SpEeD_killer)) = SpEeD_killer;
+    M(k,1:length(Acceleration_plain_droso)) = Acceleration_plain_droso;
     catch message
         fprintf(1,'%s\n',message.message)
         continue
@@ -30,9 +30,9 @@ for k = 1:length(M);
     mean_column = mean(M(logical_column,k));
     std_column = std(M(logical_column,k));
     sum_column = sum(logM(:,k));
-    killer_mean_std_per_frame(1,k) = mean_column;
-    killer_mean_std_per_frame(2,k) = std_column;
-    killer_mean_std_per_frame(3,k) = std_column / sqrt(sum_column);
-    killer_mean_std_per_frame(4,k) = sum_column;
+    adroso_mean_std_per_frame(1,k) = mean_column;
+    adroso_mean_std_per_frame(2,k) = std_column;
+    adroso_mean_std_per_frame(3,k) = std_column / sqrt(sum_column);
+    adroso_mean_std_per_frame(4,k) = sum_column;
 end
-clearvars('-except', 'logM', 'M', 'killer_mean_std_per_frame');
+clearvars('-except', 'logM', 'M', 'adroso_mean_std_per_frame');

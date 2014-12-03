@@ -32,7 +32,7 @@ hold off
 xlabel({'Fly number'}, 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
 ylabel({'Mean speed during run', '(mm/s)'}, 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
 title('Mean speed of prey', 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
-l = legend('Mean speed of holco', 'Mean speed of droso');
+l = legend('holco', 'droso');
 set(l, 'FontName', font_name, 'FontSize', font_size - 14);
 set(gca, 'TickDir', 'out');
 % set(gca, 'XTick', 1:4:30);

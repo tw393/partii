@@ -19,7 +19,7 @@ p2 = plot(Acceleration_plain_killer, 'LineWidth', line_width, 'Color', 'b');
 xlabel({'Frame number (1 frame = 1 ms)'}, 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
 ylabel({'Acceleration of object', '(mm/s^2)'}, 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
 title('Accelerations of predator and prey', 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
-l = legend('Acceleration of prey', 'Acceleration of predator', 'location', 'southeast');
+l = legend('prey', 'holco', 'location', 'southeast');
 set(l, 'FontName', font_name, 'FontSize', font_size - 16);
 set(gca, 'TickDir', 'out')
 set(gcf, 'Visible', 'on');
