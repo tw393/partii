@@ -1,8 +1,14 @@
 %% creates Matrix Ms and Ma containing speed and acceleration calculations for droso and holco
-list = dir('*_distance_analyis');
+clear all
+cd('F:\analysis\analysis_data');
+list = dir('*_distance_analysis.mat');
 %% collate data about speed into one matrix
 for k = 1:length(list);
     load(list(k).name)
+    if min(SpEeD_droso(150:end)) < 20; % removes droso which change direction - approximated as those whose speed dips below 20
+        fprintf(1, '%s fly skipped because droso changes direction\n\n', list(k).name);
+        continue
+    end
     try
     Mad(k,1:length(Acceleration_plain_droso)) = Acceleration_plain_droso;
     Msd(k,1:length(SpEeD_droso)) = SpEeD_droso;

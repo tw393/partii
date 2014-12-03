@@ -36,7 +36,7 @@ p2 = plot(killer_mean, 'LineWidth', line_width, 'Color', 'b');
 errorbar(err_droso_mean, err_droso_se, 'Color', 'k', 'LineWidth', 1.25);
 errorbar(err_killer_mean, err_killer_se, 'Color', 'k', 'LineWidth', 1.25);
 xlabel({'Time since takeoff (ms)'}, 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
-ylabel({'Mean acceleration', '(mm/s)'}, 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
+ylabel({'Mean acceleration', '(mm/s^2)'}, 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
 title('Acceleration of predator and prey vs. time', 'FontName', font_name, 'FontSize', font_size, 'FontWeight', bold_tog)
 l = legend('prey', 'holco', 'location', 'southeast');
 set(l, 'FontName', font_name, 'FontSize', font_size - 10);
