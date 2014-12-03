@@ -1,4 +1,4 @@
-%% add standard error calculations to the distance_analysis
+%% creates Matrix Ms and Ma containing speed and acceleration calculations
 %files contained in F:/analysis/analysis_data
 list = dir('*_distance_analysis.mat');
 %% collate data about speed into one matrix
