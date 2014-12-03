@@ -1,6 +1,5 @@
 %% creates Matrix Ms and Ma containing speed and acceleration calculations for droso and holco
-list(1).name = 'Fly21_new_calib_distance_analysis.mat';
-list(2).name = 'Fly22_new_calib_distance_analysis.mat';
+list = dir('*_distance_analyis');
 %% collate data about speed into one matrix
 for k = 1:length(list);
     load(list(k).name)
