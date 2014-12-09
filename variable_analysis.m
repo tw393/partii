@@ -2,15 +2,19 @@
 % from analysis.mat files contained in F:\analyis\
 %% loads the data from \analysis\
 current_folder = pwd();
-cd('F:\analysis\')
+cd('F:\analysis\analysis_data')
 list_of_variable_files = dir('*_analysis.mat');
 droso_array = zeros(27,6);
 holco_array = zeros(27,6);
 %% creates struct containing all the data
 for k = 1:length(list_of_variable_files);
     load(list_of_variable_files(k).name);
-    droso_vars(k) = droso;
-    holco_vars(k) = killer;
+    try droso_vars(k) = droso;
+        holco_vars(k) = killer;
+    catch message
+        fprintf(1, '%s\n', message.message);
+        continue
+    end
     clear droso killer
 end
 %% puts data from struct into a [K x 6] matrix where K is the
