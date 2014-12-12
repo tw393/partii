@@ -37,6 +37,7 @@ for k = 1:length(list);
     Ma(k,5) = Killer_1stmovingframe - holcoheadmove_frames(1);
     Ma(k,6) = Killer_1stmovingframe - holcoheadmove_frames(2);  
     Ma(k,7) = killer_catchframe - Killer_1stmovingframe;
+    fprintf(1, 'pass %d is %s\n', k, list(k).name)
     catch message
         fprintf(1,'Pass %d\n%s\n%s\n\n',k, list(k).name, message.message)
         clearvars('-except', 'k', 'list', 'Ma', 'font_name', 'font_size', 'bold_tog');
@@ -111,4 +112,4 @@ f = fopen(sprintf('F:/analysis/figures/%.1f flies used.txt', t(6)), 'a+');
 for i = 1:length(list)
 fprintf(f, '%s\n\n', list(i).name);
 end
-close(f);
+fclose(f);

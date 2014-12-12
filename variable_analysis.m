@@ -3,16 +3,15 @@
 %% loads the data from \analysis\
 current_folder = pwd();
 cd('F:\analysis\analysis_data')
-list_of_variable_files = dir('*_analysis.mat');
-droso_array = zeros(27,6);
-holco_array = zeros(27,6);
+list_of_variable_files = dir('*maxvar.mat');
 %% creates struct containing all the data
 for k = 1:length(list_of_variable_files);
     load(list_of_variable_files(k).name);
     try droso_vars(k) = droso;
         holco_vars(k) = killer;
+        fprintf(1, 'row %d is: %s\n', k, list_of_variable_files(k).name);
     catch message
-        fprintf(1, '%s\n', message.message);
+        fprintf(1, 'pass %d\nskipped: %s\n%s\n', k, list_of_variable_files(k).name, message.message);
         continue
     end
     clear droso killer
@@ -39,9 +38,9 @@ mean_speed_all_droso = mean(droso_array(:,1));
 mean_acceleration_all_droso = mean(droso_array(:,4));
 mean_speed_all_holco = mean(holco_array(:,1));
 mean_acceleration_all_holco = mean(holco_array(:,4));
-
+save('minmaxvararray.mat', 'droso_array', 'holco_array');
 cd(current_folder);
-clear list_of_variable_files k current+folder droso_vars holco_vars
+clear k current+folder droso_vars holco_vars
 %% explanation of variable arrays
 % array(:,1) = mean_speed
 % array(:,2) = variance_speed
